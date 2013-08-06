@@ -1,102 +1,116 @@
+<!--
+ 
+
+    Schema file - assignment 1 FIT1004, 2nd Semester 2013
+    
+    Version 1.0
+    Last updated:  4th Aug 2013
+    
+    Author: D L Dowe
+
+   (If http://studentweb.infotech.monash.edu.au/~fit1004/FIT1004_2013S2_DC.xsd
+    does not work, then use this supplied .xsd file.)
+
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-<xs:simpleType name="spName">
-<xs:restriction base="xs:string">
-<xs:enumeration value="Association Football (Soccer)"/>
-<xs:enumeration value="Australian Rules Football (AFL)"/>
-<xs:enumeration value="Baseball"/>
-<xs:enumeration value="Basketball"/>
-<xs:enumeration value="Beach Volleyball"/>
-<xs:enumeration value="Cricket"/>
-<xs:enumeration value="Ice Hockey"/>
-<xs:enumeration value="Netball"/>
-<xs:enumeration value="Rugby League"/>
-<xs:enumeration value="Rugby Union"/>
-<xs:enumeration value="Volleyball"/>
-<xs:enumeration value="Field Hockey"/>
-<!--  Students MUST NOT use, used for sample only  -->
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="authorType">
-<xs:restriction base="xs:string">
-<xs:pattern value="[0-9]{8}"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="yes-no">
-<xs:restriction base="xs:string">
-<xs:enumeration value="yes"/>
-<xs:enumeration value="no"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="phoneType">
-<xs:restriction base="xs:string">
-<xs:pattern value="\+[\d\s]*"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:element name="sport">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="sportName" type="spName"/>
-<xs:element name="sportTeamSize" type="xs:integer"/>
-<xs:element name="sportDesc">
-<xs:complexType>
-<xs:simpleContent>
-<xs:extension base="xs:string">
-<xs:attribute name="date_extracted" use="required" type="xs:date"/>
-<xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
-</xs:extension>
-</xs:simpleContent>
-</xs:complexType>
-</xs:element>
-<xs:element name="sportInternational" type="yes-no"/>
-<xs:element ref="league"/>
-</xs:sequence>
-<xs:attribute name="author" use="required" type="authorType"/>
-<xs:attribute name="date_submitted" use="required" type="xs:date"/>
-</xs:complexType>
-</xs:element>
-<xs:element name="league">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="leagueName" type="xs:string"/>
-<xs:element name="leagueInternational" type="yes-no"/>
-<xs:element name="leagueHead" type="xs:string"/>
-<xs:element name="leagueHeadTitle" type="xs:string"/>
-<xs:element name="leagueAddress" type="xs:string"/>
-<xs:element name="leaguePhone" type="phoneType"/>
-<xs:element ref="team" minOccurs="2" maxOccurs="2"/>
-</xs:sequence>
-<xs:attribute name="date_extracted" use="required" type="xs:date"/>
-<xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
-</xs:complexType>
-</xs:element>
-<xs:element name="team">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="teamName" type="xs:string"/>
-<xs:element name="teamCity" type="xs:string"/>
-<xs:element name="teamHead" type="xs:string"/>
-<xs:element name="teamCoach" type="xs:string"/>
-<xs:element ref="player" minOccurs="2" maxOccurs="2"/>
-</xs:sequence>
-<xs:attribute name="date_extracted" use="required" type="xs:date"/>
-<xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
-</xs:complexType>
-</xs:element>
-<xs:element name="player">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="playerName" type="xs:string"/>
-<xs:element name="playerPosn" type="xs:string" minOccurs="0"/>
-<xs:element name="playerHeight" type="xs:integer" minOccurs="0"/>
-<xs:element name="playerWeight" type="xs:integer" minOccurs="0"/>
-<xs:element name="playerYrBorn" type="xs:gYear"/>
-<xs:element name="playerBIO">
-<xs:complexType>
-<xs:attribute name="URL" use="required" type="xs:anyURI"/>
-<xs:attribute name="date_extracted" use="required" type="xs:date"/>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
+    <xs:simpleType name="spName">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Association Football (Soccer)"/>
+            <xs:enumeration value="Australian Rules Football (AFL)"/>
+            <xs:enumeration value="Baseball"/>
+            <xs:enumeration value="Basketball"/>
+            <xs:enumeration value="Beach Volleyball"/>
+            <xs:enumeration value="Cricket"/>
+            <xs:enumeration value="Ice Hockey"/>
+            <xs:enumeration value="Netball"/>
+            <xs:enumeration value="Rugby League"/>
+            <xs:enumeration value="Rugby Union"/>
+            <xs:enumeration value="Volleyball"/>
+            <xs:enumeration value="Field Hockey"/>
+            <!--  Students MUST NOT use, used for sample only  -->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="authorType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="yes-no">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="yes"/>
+            <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="phoneType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+[\d\s]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="sport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sportName" type="spName"/>
+                <xs:element name="sportTeamSize" type="xs:integer"/>
+                <xs:element name="sportDesc">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="date_extracted" use="required" type="xs:date"/>
+                                <xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sportInternational" type="yes-no"/>
+                <xs:element ref="league"/>
+            </xs:sequence>
+            <xs:attribute name="author" use="required" type="authorType"/>
+            <xs:attribute name="date_submitted" use="required" type="xs:date"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="league">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="leagueName" type="xs:string"/>
+                <xs:element name="leagueInternational" type="yes-no"/>
+                <xs:element name="leagueHead" type="xs:string"/>
+                <xs:element name="leagueHeadTitle" type="xs:string"/>
+                <xs:element name="leagueAddress" type="xs:string"/>
+                <xs:element name="leaguePhone" type="phoneType"/>
+                <xs:element ref="team" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+            <xs:attribute name="date_extracted" use="required" type="xs:date"/>
+            <xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="team">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teamName" type="xs:string"/>
+                <xs:element name="teamCity" type="xs:string"/>
+                <xs:element name="teamHead" type="xs:string"/>
+                <xs:element name="teamCoach" type="xs:string"/>
+                <xs:element ref="player" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+            <xs:attribute name="date_extracted" use="required" type="xs:date"/>
+            <xs:attribute name="srcURL" use="required" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="player">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="playerName" type="xs:string"/>
+                <xs:element name="playerPosn" type="xs:string" minOccurs="0"/>
+                <xs:element name="playerHeight" type="xs:integer" minOccurs="0"/>
+                <xs:element name="playerWeight" type="xs:integer" minOccurs="0"/>
+                <xs:element name="playerYrBorn" type="xs:gYear"/>
+                <xs:element name="playerBIO">
+                    <xs:complexType>
+                        <xs:attribute name="URL" use="required" type="xs:anyURI"/>
+                        <xs:attribute name="date_extracted" use="required" type="xs:date"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
